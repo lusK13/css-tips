@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    /**
+      Style pour les conteneurs flexibles en hauteur
+      */
+    body {
+      height: 100vh;
+      overflow-y: hidden;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+
+    }
+    * {
+      box-sizing: border-box;
+    }
+    .h-box {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow-y: hidden;
+    }
+    .h-box.h-row {
+      flex-direction: row;
+    }
+    .h-box > .h-fill {
+      height: 100%;
+      flex-grow: 1;
+      flex-basis: 0;
+      min-height: 1lh;
+      overflow: hidden;
+    }
+    .h-box > .h-scroll {
+      overflow-y: auto;
+    }
+    .h-box.h-fill {
+      flex-grow: 1;
+    }
+    .h-box.h-scroll {
+      overflow-y: scroll;
+    }
+
+    /**
+    Styles perso
+    */
+
+    .right {
+      background-color: rgb(231, 129, 129);
+    }
+    .left {
+      width: 300px;
+      background-color: rgb(190, 190, 245);
+    }
+    .rp {
+      width: 200px;
+      background: linear-gradient(blue, red);
+      height: 2000px;
+    }
+    .bg1 {
+      background-color: green;
+    }
+    .bg2 {
+      background-color: yellow;
+    }
+    .bg3 {
+      background-color: pink;
+    }
+    .bg4 {
+      background-color: purple;
+    }
+    .bg5 {
+      background-color: orange;
+    }
+    .bg6 {
+      background-color: brown;
+    }
+    .p1 {
+      padding: 8px;
+    }
+  </style>
+  <body>
+    <div class="h-box h-row">
+      <div class="bg1 h-box" style="width: 300px; padding: 12px;">
+        <div class="bg5">LOGO</div>
+        <div><input style="width: 100%;"></input></div>
+        <div class="bg3 h-fill h-scroll">
+          <div class="rp"></div>
+        </div>
+        <div class="bg4">NOM D'UTILISATEUR</div>
+        <div class="bg6">VERSION</div>
+      </div>
+      <div class="bg2 h-fill h-box">
+        <div>HEADER</div>
+        <div class="bg5 h-fill h-box h-row">
+          <div class="h-fill h-scroll">
+            <div class="rp"></div>
+          </div>
+          <div class="h-fill">
+            <div style="background-color: aqua; height: 100%;"></div>
+            
+          </div>          
+        </div>
+        <div>FOOTER MAIN</div>
+
+      </div>
+    </div>
+    <div class="bg3">FOOTER GLOBAL</div>
+  </body>
+</html>
