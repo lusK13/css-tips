@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <input type="text" id="test" name="test" />
+  </body>
+
+  <script>
+    const moninput = document.querySelector("input");
+    // input.value = "salut";
+    const event = new Event("maFonction", { bubbles: false });
+
+    moninput.addEventListener("maFonction", (e) => {
+      if (e.target.value) console.log(e.target.value);
+      else {
+        console.log("aucune entrée");
+      }
+    });
+
+    moninput.dispatchEvent(event);
+
+    fetch("http://localhost:3000/posts")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+      });
+  </script>
+</html>

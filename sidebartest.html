@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .content-scrollable {
+      overflow-y: auto;
+      height: 100%;
+      flex-grow: 1;
+    }
+    .unscrollable {
+      overflow-y: hidden;
+      height: 100%;
+    }
+    #all {
+      display: flex;
+      height: 100vh;
+      background-color: rgb(216, 216, 230);
+    }
+    #sidebar {
+      width: 20%;
+      background-color: rgb(255, 255, 255);
+      border-right: 1px solid rgb(0, 0, 0);
+    }
+    #right {
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+      background-color: rgb(222, 26, 26);
+    }
+    .container-fixe {
+      overflow-y: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .container-fixe-row {
+      overflow-y: hidden;
+      display: flex;
+      height: 100%;
+    }
+
+    .container-fixe-row.grow > * {
+      flex-grow: 1;
+    }
+    .container-fixe > .content-full {
+      overflow-y: auto;
+      flex-grow: 1;
+      scrollbar-width: thin;
+      scrollbar-color: rgb(208, 208, 208) rgb(245, 245, 245);
+    }
+    .container-fixe-row > .content-full {
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: rgb(208, 208, 208) rgb(245, 245, 245);
+    }
+
+    .content-full::-webkit-scrollbar {
+      width: 6px;
+    }
+    .content-full::-webkit-scrollbar-track {
+      background: rgb(245, 245, 245);
+    }
+    .content-full::-webkit-scrollbar-thumb {
+      background: rgb(208, 208, 208);
+      border-radius: 5px;
+    }
+    #test {
+      box-sizing: border-box;
+      background-color: rgb(255, 242, 144);
+      border: 10px solid;
+    }
+  </style>
+  <body style="margin: 0">
+    <div id="all">
+      <div id="sidebar">Sidebar</div>
+      <div id="right">
+        <div class="container-fixe">
+          <div>header</div>
+          <div class="container-fixe-row grow">
+            <div class="content-full" style="background-color: yellow">
+              <div style="height: 500px">scrollable</div>
+            </div>
+            <div style="background-color: green">
+              <div>Map</div>
+            </div>
+          </div>
+          <div>Footer</div>
+        </div>
+
+       
+    </div>
+  </body>
+</html>
