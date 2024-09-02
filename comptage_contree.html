@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            width: 100%;
+        }
+        .calculatrice {
+            margin: 50px auto;
+            width: 500px;
+        }
+        .calculatrice > .ecran {
+            width: 100%;
+            height: 40px;
+            background-color: rgb(214, 214, 214);
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 5px;
+            font-size: 2rem;
+        }
+        .calculatrice > .bouton {
+            display: grid;
+            padding: 5px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            border: 2px solid rgb(214, 214, 214);
+        }
+        .calculatrice > .bouton > .chiffre {
+            padding: 5px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            position: relative;
+        }
+        .calculatrice > .bouton > .chiffre > span {
+            position: absolute;
+            right: 4px;
+            bottom: 2px;
+            font-size: 0.8rem;
+        }
+    </style>
+    <body>
+        <div class="calculatrice">
+            <div class="ecran"></div>
+            <div class="bouton">
+                <button class="chiffre" value="2" id="vallet">
+                    Vallet<span></span>
+                </button>
+                <button class="chiffre" value="3" id="dame">
+                    Dame<span></span>
+                </button>
+                <button class="chiffre" value="4" id="roi">
+                    Roi<span></span>
+                </button>
+                <button class="chiffre" value="10" id="dix">
+                    10<span></span>
+                </button>
+                <button class="chiffre" value="11" id="as">
+                    AS<span></span>
+                </button>
+                <button class="chiffre" value="20" id="valletAtout">
+                    (A) Vallet<span></span>
+                </button>
+                <button class="chiffre" value="14" id="neuf">
+                    (A) 9<span></span>
+                </button>
+                <button
+                    class="chiffre"
+                    style="grid-column-start: 2"
+                    id="belotte"
+                    value="20"
+                >
+                    Belotte<span></span>
+                </button>
+            </div>
+            <button onclick="reset()">Reset</button>
+        </div>
+    </body>
+
+    <script>
+        const paramNbCard = {
+            vallet: 3,
+            dame: 4,
+            roi: 4,
+            dix: 4,
+            as: 4,
+            valletAtout: 1,
+            neuf: 1,
+            belotte: 1
+        };
+        const nbCard = {
+            vallet: 3,
+            dame: 4,
+            roi: 4,
+            dix: 4,
+            as: 4,
+            valletAtout: 1,
+            neuf: 1,
+            belotte: 1
+        };
+        const chiffre = document.querySelectorAll(".chiffre");
+        const ecran = document.querySelector(".ecran");
+        chiffre.forEach((btn) => {
+            btn.addEventListener("click", (e) => {
+                const selectedNumber = parseInt(e.target.value);
+                nbCard[e.target.id] -= 1;
+                if (nbCard[e.target.id] >= 0) {
+                    ecran.textContent = addition(
+                        selectedNumber,
+                        ecran.textContent
+                    );
+                    e.target.querySelector("span").textContent =
+                        nbCard[e.target.id];
+                }
+            });
+        });
+
+        function addition(a, b) {
+            return a + (b | 0);
+        }
+        function reset() {
+            for (const key in nbCard) {
+                nbCard[key] = paramNbCard[key];
+            }
+            ecran.textContent = 0;
+            chiffre.forEach((btn) => {
+                btn.querySelector("span").textContent = paramNbCard[btn.id];
+            });
+        }
+        reset();
+    </script>
+</html>
